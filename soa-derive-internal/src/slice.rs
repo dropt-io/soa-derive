@@ -408,7 +408,7 @@ pub fn derive_mut(input: &Input) -> TokenStream {
                     #(
                         let #fields_names = self.#fields_names.first_mut().unwrap();
                     )*
-                    Some(#ref_mut_name{#(#fields_names: #fields_names),*})
+                    Some(#ref_mut_name{#(#fields_names),*})
                 }
             }
 
@@ -426,7 +426,7 @@ pub fn derive_mut(input: &Input) -> TokenStream {
                     #(
                         let (#fields_names, #fields_names_hygienic_1) = self.#fields_names.split_first_mut().unwrap();
                     )*
-                    let ref_ = #ref_mut_name{#(#fields_names: #fields_names),*};
+                    let ref_ = #ref_mut_name{#(#fields_names),*};
                     let slice = #slice_mut_name{#(#fields_names: #fields_names_hygienic_1),*};
                     Some((ref_, slice))
                 }
@@ -442,7 +442,7 @@ pub fn derive_mut(input: &Input) -> TokenStream {
                     #(
                         let #fields_names = self.#fields_names.last_mut().unwrap();
                     )*
-                    Some(#ref_mut_name{#(#fields_names: #fields_names),*})
+                    Some(#ref_mut_name{#(#fields_names),*})
                 }
             }
 
@@ -460,7 +460,7 @@ pub fn derive_mut(input: &Input) -> TokenStream {
                     #(
                         let (#fields_names, #fields_names_hygienic_1) = self.#fields_names.split_last_mut().unwrap();
                     )*
-                    let ref_ = #ref_mut_name{#(#fields_names: #fields_names),*};
+                    let ref_ = #ref_mut_name{#(#fields_names),*};
                     let slice = #slice_mut_name{#(#fields_names: #fields_names_hygienic_1),*};
                     Some((ref_, slice))
                 }
